@@ -1,0 +1,66 @@
+declare module "*.json" {
+  interface Common {
+    applicationTitle: string;
+    loading: string;
+    saving: string;
+    save: string;
+    cancel: string;
+    close: string;
+    ok: string;
+    success: string;
+    error: string;
+    addNew: string;
+    detail: string;
+    edit: string;
+    delete: string;
+    copy: string;
+  }
+
+  interface Role {
+    roles: string;
+    addNewRole: string;
+    editRole: string;
+    roleDetail: string;
+    messageCreateRoleSuccess: string;
+    messageCreateRoleFailed: string;
+    messageUpdateRoleSuccess: string;
+    messageUpdateRoleFailed: string;
+    messageDeleteRoleConfirm: string;
+    messageDeleteRoleSuccess: string;
+    messageDeleteRoleFailed: string;
+  }
+
+  interface User {
+    users: string;
+    addNewUser: string;
+    editUser: string;
+    userDetail: string;
+    username: string;
+    password: string;
+    confirmPassword: string;
+    fullname: string;
+    email: string;
+    phone: string;
+    active: string;
+    resetPassword: string;
+    roles: string;
+    messageCreateUserSuccess: string;
+    messageCreateUserFailed: string;
+    messageUpdateUserSuccess: string;
+    messageUpdateUserFailed: string;
+    messageDeleteUserConfirm: string;
+    messageDeleteUserSuccess: string;
+    messageDeleteUserFailed: string;
+    messageResetPasswordSuccess: string;
+    messageResetPasswordFailed: string;
+  }
+
+  interface StringResources {
+    common: Common;
+    role: Role;
+    user: User;
+  }
+
+  const value: StringResources;
+  export = value;
+}

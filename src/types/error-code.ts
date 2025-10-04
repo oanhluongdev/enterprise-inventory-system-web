@@ -1,0 +1,35 @@
+export enum ApiErrorCode {
+  StatusCodeSuccess = 0,
+  StatusCodeFailed = 1,
+  StatusCodeInternalError = 2,
+  StatusCodeForbiden = 3,
+  StatusCodeUnauthorized = 4,
+  StatusCodeValidationFailed = 5,
+  StatusCodeBadRequest = 6,
+
+  // User
+  StatusCodeUserUsernameRequired = 1000,
+  StatusCodeUserUsernameTooShort = 1001,
+  StatusCodeUserUsernameTooLong = 1002,
+  StatusCodeUserUsernameAlreadyExist = 1003,
+  StatusCodeUserEmailRequired = 1004,
+  StatusCodeUserEmailTooShort = 1005,
+  StatusCodeUserEmailTooLong = 1006,
+  StatusCodeUserEmailAlreadyExist = 1007,
+  StatusCodeUserPasswordRequired = 1008,
+  StatusCodeUserPasswordTooShort = 1009,
+  StatusCodeUserPasswordTooLong = 1010,
+  StatusCodeUserFullnameTooShort = 1011,
+  StatusCodeUserFullnameTooLong = 1012,
+  StatusCodeUserFullanmeRequired = 1013,
+  StatusCodeUserPhoneTooLong = 1014,
+  StatusCodeUserNotFound = 1015,
+
+  StatusCodeRoleNameRequired = 1100,
+  StatusCodeRoleNameTooLong = 1101,
+  StatusCodeRoleNameAlreadyExist = 1102,
+  StatusCodeRoleDescriptionTooLong = 1103,
+  StatusCodeRoleNotFound = 1104,
+  // Auth
+  StatusCodeLoginUsernameOrPasswordIncorrect = 1500,
+}
