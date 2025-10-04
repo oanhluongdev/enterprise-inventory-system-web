@@ -37,6 +37,8 @@
     "password": "Password",
     "confirmPassword": "Confirm Password",
     "fullname": "Fullname",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "email": "Email",
     "phone": "Phone",
     "active": "Active",

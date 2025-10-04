@@ -45,7 +45,8 @@ export const ViewEditUserForm = () => {
     defaultValues: {
       id: "",
       username: "",
-      fullname: "",
+      firstName: "",
+      lastName: "",
       phone: "",
       email: "",
       isActive: true,
@@ -105,7 +106,8 @@ export const ViewEditUserForm = () => {
       form.reset({
         id: getUserResponseData.data?.id,
         username: getUserResponseData.data?.username,
-        fullname: getUserResponseData.data?.fullname,
+        firstName: getUserResponseData.data?.firstName,
+        lastName: getUserResponseData.data?.lastName,
         email: getUserResponseData.data?.email,
         phone: getUserResponseData.data?.phone,
         isActive: getUserResponseData.data?.isActive,
@@ -217,10 +219,32 @@ export const ViewEditUserForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="fullname"
+                  name="firstName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{resouces.user.fullname}:</FormLabel>
+                      <FormLabel>{resouces.user.firstName}:</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          value={field.value ?? ""}
+                          disabled={loading || isSavingData}
+                          readOnly={
+                            userModalState.formAction === FormActions.View
+                          }
+                          className="rounded"
+                        />
+                      </FormControl>
+                      <FormDescription />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{resouces.user.lastName}:</FormLabel>
                       <FormControl>
                         <Input
                           {...field}

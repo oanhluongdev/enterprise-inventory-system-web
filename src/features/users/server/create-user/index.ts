@@ -20,7 +20,8 @@ export const handler = async (
     password: [],
     confirmPassword: [],
     email: [],
-    fullname: [],
+    firstName: [],
+    lastName: [],
     phone: [],
     isActive: [],
     roles: [],
@@ -36,10 +37,16 @@ export const handler = async (
         fieldErrors.username = [httpResult.message || ""];
         break;
       }
-      case ApiErrorCode.StatusCodeUserFullanmeRequired:
-      case ApiErrorCode.StatusCodeUserFullnameTooLong:
-      case ApiErrorCode.StatusCodeUserFullnameTooShort: {
-        fieldErrors.fullname = [httpResult.message || ""];
+      case ApiErrorCode.StatusCodeUserFirstNameRequired:
+      case ApiErrorCode.StatusCodeUserFirstNameTooLong:
+      case ApiErrorCode.StatusCodeUserFirstNameTooShort: {
+        fieldErrors.firstName = [httpResult.message || ""];
+        break;
+      }
+      case ApiErrorCode.StatusCodeUserLastNameRequired:
+      case ApiErrorCode.StatusCodeUserLastNameTooLong:
+      case ApiErrorCode.StatusCodeUserLastNameTooShort: {
+        fieldErrors.lastName = [httpResult.message || ""];
         break;
       }
       case ApiErrorCode.StatusCodeUserPasswordRequired:

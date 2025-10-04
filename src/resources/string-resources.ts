@@ -39,6 +39,8 @@ declare module "*.json" {
     password: string;
     confirmPassword: string;
     fullname: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone: string;
     active: string;

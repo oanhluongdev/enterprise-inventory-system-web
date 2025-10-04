@@ -1,7 +1,8 @@
 export type GetUserResponse = {
   id: string;
   username: string;
-  fullname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   isActive: boolean;

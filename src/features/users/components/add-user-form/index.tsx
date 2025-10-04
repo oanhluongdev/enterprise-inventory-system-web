@@ -45,7 +45,8 @@ export const AddUserForm = () => {
       username: "",
       password: "",
       confirmPassword: "",
-      fullname: "",
+      firstName: "",
+      lastName: "",
       phone: "",
       email: "",
       isActive: true,
@@ -198,10 +199,29 @@ export const AddUserForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="fullname"
+                  name="firstName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{resouces.user.fullname}:</FormLabel>
+                      <FormLabel>{resouces.user.firstName}:</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          value={field.value ?? ""}
+                          disabled={loading || isSavingData}
+                          className="rounded"
+                        />
+                      </FormControl>
+                      <FormDescription />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{resouces.user.lastName}:</FormLabel>
                       <FormControl>
                         <Input
                           {...field}

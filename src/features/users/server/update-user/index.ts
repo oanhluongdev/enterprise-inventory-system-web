@@ -19,7 +19,8 @@ export const handler = async (
     id: [],
     username: [],
     email: [],
-    fullname: [],
+    firstName: [],
+    lastName: [],
     phone: [],
     isActive: [],
     roles: [],
@@ -28,10 +29,16 @@ export const handler = async (
     revalidatePath("/data-management/users");
   } else {
     switch (httpResult.status) {
-      case ApiErrorCode.StatusCodeUserFullanmeRequired:
-      case ApiErrorCode.StatusCodeUserFullnameTooLong:
-      case ApiErrorCode.StatusCodeUserFullnameTooShort: {
-        fieldErrors.fullname = [httpResult.message || ""];
+      case ApiErrorCode.StatusCodeUserFirstNameRequired:
+      case ApiErrorCode.StatusCodeUserFirstNameTooLong:
+      case ApiErrorCode.StatusCodeUserFirstNameTooShort: {
+        fieldErrors.firstName = [httpResult.message || ""];
+        break;
+      }
+      case ApiErrorCode.StatusCodeUserLastNameRequired:
+      case ApiErrorCode.StatusCodeUserLastNameTooLong:
+      case ApiErrorCode.StatusCodeUserLastNameTooShort: {
+        fieldErrors.lastName = [httpResult.message || ""];
         break;
       }
       case ApiErrorCode.StatusCodeUserEmailAlreadyExist:
