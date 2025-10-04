@@ -71,7 +71,7 @@ export const UserTable = ({ listUserResponse }: UserTableProps) => {
         <DataTable
           columns={tableColumns}
           data={usersData || []}
-          headerClassName="last:w-[50px] first:w-[300px] nth-[3]:w-[100px] nth-[3]:text-center last:text-center"
+          headerClassName="last:w-[50px] first:w-[150px] nth-[3]:w-[100px] nth-[3]:text-center last:text-center"
         />
       </ScrollArea>
       {usersData.length > 0 && (

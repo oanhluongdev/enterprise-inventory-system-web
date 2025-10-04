@@ -63,28 +63,41 @@ export const createUserTableColumns = (
   return [
     {
       accessorKey: "username",
-      header: () => <div className="font-semibold">Username</div>,
+      header: () => (
+        <div className="font-semibold">{resouces.user.username}</div>
+      ),
       cell: ({ row }) => {
         return <div>{row.getValue("username")}</div>;
       },
     },
     {
       accessorKey: "email",
-      header: () => <div className="font-semibold">Email</div>,
+      header: () => <div className="font-semibold">{resouces.user.email}</div>,
       cell: ({ row }) => {
         return <div>{row.getValue("email")}</div>;
       },
     },
     {
-      accessorKey: "fullname",
-      header: () => <div className="font-semibold">Fullname</div>,
+      accessorKey: "firstName",
+      header: () => (
+        <div className="font-semibold">{resouces.user.firstName}</div>
+      ),
       cell: ({ row }) => {
-        return <div>{row.getValue("fullname")}</div>;
+        return <div>{row.getValue("lastName")}</div>;
+      },
+    },
+    {
+      accessorKey: "lastName",
+      header: () => (
+        <div className="font-semibold">{resouces.user.lastName}</div>
+      ),
+      cell: ({ row }) => {
+        return <div>{row.getValue("lastName")}</div>;
       },
     },
     {
       accessorKey: "phone",
-      header: () => <div className="font-semibold">Phone</div>,
+      header: () => <div className="font-semibold">{resouces.user.phone}</div>,
       cell: ({ row }) => {
         return <div>{row.getValue("phone")}</div>;
       },
@@ -105,7 +118,7 @@ export const createUserTableColumns = (
     },
     {
       accessorKey: "isActive",
-      header: () => <div className="font-semibold">Active</div>,
+      header: () => <div className="font-semibold">{resouces.user.active}</div>,
       cell: ({ row }) => {
         return (
           <div className="text-center">
