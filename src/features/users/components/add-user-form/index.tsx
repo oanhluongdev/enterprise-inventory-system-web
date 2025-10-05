@@ -197,12 +197,13 @@ export const AddUserForm = () => {
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
-                  name="firstName"
+                  name="lastName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{resouces.user.firstName}:</FormLabel>
+                      <FormLabel>{resouces.user.lastName}:</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -218,10 +219,10 @@ export const AddUserForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="lastName"
+                  name="firstName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{resouces.user.lastName}:</FormLabel>
+                      <FormLabel>{resouces.user.firstName}:</FormLabel>
                       <FormControl>
                         <Input
                           {...field}

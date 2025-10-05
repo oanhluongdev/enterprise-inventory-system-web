@@ -83,7 +83,7 @@ export const createUserTableColumns = (
         <div className="font-semibold">{resouces.user.firstName}</div>
       ),
       cell: ({ row }) => {
-        return <div>{row.getValue("lastName")}</div>;
+        return <div>{row.getValue("firstName")}</div>;
       },
     },
     {
