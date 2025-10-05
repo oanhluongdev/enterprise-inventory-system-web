@@ -16,11 +16,14 @@
     "copy": "Copy"
   },
   "business": {
-    "businessData": "Business Data",
-    "business": "Business",
+    "businessData": "Business Unit",
+    "business": "Business Unit",
     "userManagement": "User Management",
     "users": "Users",
-    "roles": "Roles"
+    "roles": "Roles",
+    "companyManagement": "Company Management",
+    "companies": "Companies",
+    "companyUnit": "Company Unit"
   },
   "role": {
     "roles": "Roles",

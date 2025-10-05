@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import * as resouces from "@/resources/string-resources.json";
 
 const menuItems = [
   {
@@ -17,7 +18,7 @@ const menuItems = [
     href: "/data-management",
   },
   {
-    title: "Business",
+    title: resouces.business.business,
     href: "/business/users",
   },
   {

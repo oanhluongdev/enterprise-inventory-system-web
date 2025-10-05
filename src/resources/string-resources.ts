@@ -22,6 +22,9 @@ declare module "*.json" {
     userManagement: string;
     users: string;
     roles: string;
+    companyManagement: string;
+    companies: string;
+    companyUnit: string;
   }
 
   interface Role {

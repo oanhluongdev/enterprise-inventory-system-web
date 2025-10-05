@@ -1,5 +1,5 @@
 import React from "react";
-import { Users } from "lucide-react";
+import { Landmark, Users } from "lucide-react";
 import { LayoutProps } from "@/components/layout-prop";
 import { LeftSidebar } from "@/components/left-sidebar";
 import * as resouces from "@/resources/string-resources.json";
@@ -19,6 +19,16 @@ const sidebarData = {
         {
           title: resouces.business.roles,
           url: `${businessUrl}/roles`,
+        },
+      ],
+    },
+    {
+      groupTitle: resouces.business.companyManagement,
+      icon: Landmark,
+      subItems: [
+        {
+          title: resouces.business.companies,
+          url: `${businessUrl}/companies`,
         },
       ],
     },
