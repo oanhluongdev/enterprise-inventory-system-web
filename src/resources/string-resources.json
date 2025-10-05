@@ -15,6 +15,13 @@
     "delete": "Delete",
     "copy": "Copy"
   },
+  "business": {
+    "businessData": "Business Data",
+    "business": "Business",
+    "userManagement": "User Management",
+    "users": "Users",
+    "roles": "Roles"
+  },
   "role": {
     "roles": "Roles",
     "addNewRole": "Add New Role",

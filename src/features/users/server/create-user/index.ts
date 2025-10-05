@@ -27,7 +27,7 @@ export const handler = async (
     roles: [],
   };
   if (httpResult.status === ApiErrorCode.StatusCodeSuccess) {
-    revalidatePath("/data-management/users");
+    revalidatePath("/business/users");
   } else {
     switch (httpResult.status) {
       case ApiErrorCode.StatusCodeUserUsernameRequired:

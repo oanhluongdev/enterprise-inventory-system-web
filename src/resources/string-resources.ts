@@ -16,6 +16,14 @@ declare module "*.json" {
     copy: string;
   }
 
+  interface Business {
+    businessData: string;
+    business: string;
+    userManagement: string;
+    users: string;
+    roles: string;
+  }
+
   interface Role {
     roles: string;
     addNewRole: string;
@@ -59,6 +67,7 @@ declare module "*.json" {
 
   interface StringResources {
     common: Common;
+    business: Business;
     role: Role;
     user: User;
   }

@@ -15,7 +15,7 @@ export const handler = async (
     id: [],
   };
   if (httpResult.status === ApiErrorCode.StatusCodeSuccess) {
-    revalidatePath("/data-management/roles");
+    revalidatePath("/business/roles");
   } else {
   }
   return {

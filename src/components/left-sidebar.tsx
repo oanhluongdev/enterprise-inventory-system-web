@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import {
   Sidebar,
@@ -18,40 +19,33 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronRight, Computer, Database, Users } from "lucide-react";
-import Link from "next/link";
+import { ChevronRight, LucideProps } from "lucide-react";
+export interface LeftSidebarData {
+  title: string;
+  groups: {
+    groupTitle: string;
+    icon: React.ForwardRefExoticComponent<
+      Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+    >;
+    subItems: {
+      title: string;
+      url: string;
+    }[];
+  }[];
+}
 
-const sidebarData = [
-  {
-    groupTitle: "Devices Management",
-    icon: Computer,
-    subItems: [
-      {
-        title: "Devices",
-        url: "/data-management/devices",
-      },
-    ],
-  },
-  {
-    groupTitle: "Common Data",
-    icon: Database,
-    subItems: [
-      {
-        title: "Areas",
-        url: "/data-management/areas",
-      },
-    ],
-  },
-];
+interface LeftSidebarProps {
+  data: LeftSidebarData;
+}
 
-export const DataManagementSidebar = () => {
+export const LeftSidebar = ({ data }: LeftSidebarProps) => {
   return (
     <Sidebar className="pt-14" collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Data Management</SidebarGroupLabel>
+          <SidebarGroupLabel>{data.title}</SidebarGroupLabel>
           <SidebarGroupContent>
-            {sidebarData.map((g) => (
+            {data.groups.map((g) => (
               <SidebarMenu key={g.groupTitle}>
                 <Collapsible defaultOpen={false} className="group/collapsible">
                   <SidebarMenuItem>

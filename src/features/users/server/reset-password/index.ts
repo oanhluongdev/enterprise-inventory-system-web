@@ -20,9 +20,7 @@ export const handler = async (
     password: [],
     confirmPassword: [],
   };
-  if (httpResult.status === ApiErrorCode.StatusCodeSuccess) {
-    revalidatePath("/data-management/users");
-  } else {
+  if (httpResult.status !== ApiErrorCode.StatusCodeSuccess) {
     switch (httpResult.status) {
       case ApiErrorCode.StatusCodeUserPasswordRequired:
       case ApiErrorCode.StatusCodeUserPasswordTooLong:

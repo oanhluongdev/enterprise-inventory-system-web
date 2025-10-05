@@ -17,6 +17,10 @@ const menuItems = [
     href: "/data-management",
   },
   {
+    title: "Business",
+    href: "/business/users",
+  },
+  {
     title: "Reports",
     href: "/reports",
   },

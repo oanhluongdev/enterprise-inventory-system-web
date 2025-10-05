@@ -22,7 +22,7 @@ export const handler = async (
     permissions: [],
   };
   if (httpResult.status === ApiErrorCode.StatusCodeSuccess) {
-    revalidatePath("/data-management/roles");
+    revalidatePath("/business/roles");
   } else {
     switch (httpResult.status) {
       case ApiErrorCode.StatusCodeRoleNameRequired:
