@@ -26,46 +26,59 @@ export const handler = async (
     isActive: [],
     roles: [],
   };
-  if (httpResult.status === ApiErrorCode.StatusCodeSuccess) {
+  if (httpResult.success) {
     revalidatePath("/business/users");
   } else {
     switch (httpResult.status) {
-      case ApiErrorCode.StatusCodeUserUsernameRequired:
-      case ApiErrorCode.StatusCodeUserUsernameTooLong:
-      case ApiErrorCode.StatusCodeUserUsernameTooShort:
-      case ApiErrorCode.StatusCodeUserUsernameAlreadyExist: {
-        fieldErrors.username = [httpResult.message || ""];
+      case ApiErrorCode.StatusCodeValidationFailed: {
+        const fieldErrorsFromApi = httpResult.fieldErrors;
+        if (fieldErrorsFromApi) {
+          Object.keys(fieldErrorsFromApi).forEach((key) => {
+            const value = fieldErrorsFromApi[key];
+            switch (+key) {
+              case ApiErrorCode.StatusCodeUserUsernameRequired:
+              case ApiErrorCode.StatusCodeUserUsernameTooLong:
+              case ApiErrorCode.StatusCodeUserUsernameTooShort:
+              case ApiErrorCode.StatusCodeUserUsernameAlreadyExist: {
+                fieldErrors.username = [value || ""];
+                break;
+              }
+              case ApiErrorCode.StatusCodeUserFirstNameRequired:
+              case ApiErrorCode.StatusCodeUserFirstNameTooLong:
+              case ApiErrorCode.StatusCodeUserFirstNameTooShort: {
+                fieldErrors.firstName = [value || ""];
+                break;
+              }
+              case ApiErrorCode.StatusCodeUserLastNameRequired:
+              case ApiErrorCode.StatusCodeUserLastNameTooLong:
+              case ApiErrorCode.StatusCodeUserLastNameTooShort: {
+                fieldErrors.lastName = [value || ""];
+                break;
+              }
+              case ApiErrorCode.StatusCodeUserPasswordRequired:
+              case ApiErrorCode.StatusCodeUserPasswordTooLong:
+              case ApiErrorCode.StatusCodeUserPasswordTooShort: {
+                fieldErrors.password = [value || ""];
+                break;
+              }
+              case ApiErrorCode.StatusCodeUserEmailAlreadyExist:
+              case ApiErrorCode.StatusCodeUserEmailRequired:
+              case ApiErrorCode.StatusCodeUserEmailTooLong:
+              case ApiErrorCode.StatusCodeUserEmailInvalid: {
+                fieldErrors.email = [value || ""];
+                break;
+              }
+              case ApiErrorCode.StatusCodeUserPhoneTooLong: {
+                fieldErrors.phone = [value || ""];
+                break;
+              }
+            }
+          });
+        }
         break;
       }
-      case ApiErrorCode.StatusCodeUserFirstNameRequired:
-      case ApiErrorCode.StatusCodeUserFirstNameTooLong:
-      case ApiErrorCode.StatusCodeUserFirstNameTooShort: {
-        fieldErrors.firstName = [httpResult.message || ""];
+      default:
         break;
-      }
-      case ApiErrorCode.StatusCodeUserLastNameRequired:
-      case ApiErrorCode.StatusCodeUserLastNameTooLong:
-      case ApiErrorCode.StatusCodeUserLastNameTooShort: {
-        fieldErrors.lastName = [httpResult.message || ""];
-        break;
-      }
-      case ApiErrorCode.StatusCodeUserPasswordRequired:
-      case ApiErrorCode.StatusCodeUserPasswordTooLong:
-      case ApiErrorCode.StatusCodeUserPasswordTooShort: {
-        fieldErrors.password = [httpResult.message || ""];
-        break;
-      }
-      case ApiErrorCode.StatusCodeUserEmailAlreadyExist:
-      case ApiErrorCode.StatusCodeUserEmailRequired:
-      case ApiErrorCode.StatusCodeUserEmailTooLong:
-      case ApiErrorCode.StatusCodeUserEmailTooShort: {
-        fieldErrors.email = [httpResult.message || ""];
-        break;
-      }
-      case ApiErrorCode.StatusCodeUserPhoneTooLong: {
-        fieldErrors.phone = [httpResult.message || ""];
-        break;
-      }
     }
   }
   return {

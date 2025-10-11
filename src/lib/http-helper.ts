@@ -5,9 +5,7 @@ import { sleep } from "./utils";
 
 const DELAY_TIME = 1;
 
-export type ApiFieldErrors = {
-  [key: string]: string[];
-};
+export type ApiFieldErrors = { [key: string]: string };
 
 export type ApiResponse<T> = {
   success: boolean;

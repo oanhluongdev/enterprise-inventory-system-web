@@ -5,28 +5,29 @@ export const CreateUserSchema = z
     username: z
       .string()
       .min(1, { message: "Username is required" })
-      .max(50, { message: "Username must be less than 50 characters" }),
-    password: z
-      .string()
-      .min(1, { message: "Password is required" })
-      .max(255, { message: "Password must be less than 255 characters" }),
+      .max(50, { message: "Username must not be greater than 50 characters" }),
+    password: z.string().min(1, { message: "Password is required" }).max(255, {
+      message: "Password must not be greater than 255 characters",
+    }),
     confirmPassword: z
       .string()
       .min(1, { message: "Confirm password is required" })
       .max(255, {
-        message: "Confirm password must be less than 255 characters",
+        message: "Confirm password must not be greater than 255 characters",
       }),
     firstName: z
       .string()
       .min(1, { message: "First name is required" })
-      .max(100, { message: "First name must be less than 100 characters" }),
-    lastName: z
-      .string()
-      .min(1, { message: "Last name is required" })
-      .max(100, { message: "Last name must be less than 100 characters" }),
+      .max(100, {
+        message: "First name must not be greater than 100 characters",
+      }),
+    lastName: z.string().min(1, { message: "Last name is required" }).max(100, {
+      message: "Last name must not be greater than 100 characters",
+    }),
     phone: z
       .string()
-      .max(20, { message: "Phone must be less than 20 characters" }),
+      .max(20, { message: "Phone must not be greater than 20 characters" })
+      .optional(),
     email: z.email({ message: "Invalid email" }),
     isActive: z.boolean(),
     roles: z.array(z.string()),

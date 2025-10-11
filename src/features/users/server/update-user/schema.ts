@@ -13,7 +13,8 @@ export const UpdateUserSchema = z.object({
     .max(100, { message: "Last name must be less than 100 characters" }),
   phone: z
     .string()
-    .max(20, { message: "Phone must be less than 20 characters" }),
+    .max(20, { message: "Phone must be less than 20 characters" })
+    .optional(),
   email: z.email({ message: "Invalid email" }),
   isActive: z.boolean(),
   roles: z.array(z.string()),

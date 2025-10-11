@@ -22,18 +22,29 @@ export const handler = async (
     enabled: [],
     permissions: [],
   };
-  if (httpResult.status === ApiErrorCode.StatusCodeSuccess) {
+  if (httpResult.success) {
     revalidatePath("/business/roles");
   } else {
     switch (httpResult.status) {
-      case ApiErrorCode.StatusCodeRoleNameRequired:
-      case ApiErrorCode.StatusCodeRoleNameTooLong:
-      case ApiErrorCode.StatusCodeRoleNameAlreadyExist: {
-        fieldErrors.name = [httpResult.message || ""];
-        break;
-      }
-      case ApiErrorCode.StatusCodeRoleDescriptionTooLong: {
-        fieldErrors.description = [httpResult.message || ""];
+      case ApiErrorCode.StatusCodeValidationFailed: {
+        const fieldErrorsFromApi = httpResult.fieldErrors;
+        if (fieldErrorsFromApi) {
+          Object.keys(fieldErrorsFromApi).forEach((key) => {
+            const value = fieldErrorsFromApi[key];
+            switch (+key) {
+              case ApiErrorCode.StatusCodeRoleNameRequired:
+              case ApiErrorCode.StatusCodeRoleNameTooLong:
+              case ApiErrorCode.StatusCodeRoleNameAlreadyExist: {
+                fieldErrors.name = [value || ""];
+                break;
+              }
+              case ApiErrorCode.StatusCodeRoleDescriptionTooLong: {
+                fieldErrors.description = [value || ""];
+                break;
+              }
+            }
+          });
+        }
         break;
       }
     }

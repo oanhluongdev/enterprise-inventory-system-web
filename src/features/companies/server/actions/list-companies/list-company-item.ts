@@ -1,0 +1,21 @@
+export type ListCompanyItem = {
+  Id: string;
+  Name: string;
+  LegalName: string;
+  RegistrationNumber: string;
+  TaxId: string;
+  Website: string;
+  Email: string;
+  Phone: string;
+  LogoUrl: string;
+  Address: string;
+  City: string;
+  State: string;
+  Country: string;
+  PostalCode: string;
+  CurrencyCode: string;
+  Timezone: string;
+  IsActive: boolean;
+  CreatedAt: Date;
+  UpdatedAt: Date;
+};
