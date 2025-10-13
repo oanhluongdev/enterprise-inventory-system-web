@@ -2,20 +2,45 @@
 
 import { revalidatePath } from "next/cache";
 import { FieldErrors } from "@/types/field-error";
-import { CreateCompanyInputType, ReturnType } from "./types";
-import { httpPost } from "@/lib/http-helper";
+import { CreateUpdateCompanyInputType, ReturnType } from "./types";
+import { ApiFieldErrors, httpPost, httpPut } from "@/lib/http-helper";
 import { ApiErrorCode } from "@/types/error-code";
-import { CreateCompanySchema } from "./schema";
+import { CreateUpdateCompanySchema } from "./schema";
 import { createSafeAction } from "@/lib/create-safe-action";
 
 export const handler = async (
-  inputData: CreateCompanyInputType
+  inputData: CreateUpdateCompanyInputType
 ): Promise<ReturnType> => {
-  const httpResult = await httpPost<CreateCompanyInputType, string>(
-    "/api/v1/companies",
-    inputData
-  );
-  const fieldErrors: FieldErrors<CreateCompanyInputType> = {
+  let isSuccess = false;
+  let status = ApiErrorCode.StatusCodeInternalError;
+  let fieldErrorsFromApi: ApiFieldErrors | undefined = undefined;
+  let apiMessage: string | undefined = undefined;
+  let apiData: string | boolean | undefined = undefined;
+
+  if (inputData.id && inputData.id.length > 0) {
+    const httpResult = await httpPut<CreateUpdateCompanyInputType, string>(
+      `/api/v1/companies/${inputData.id}`,
+      inputData
+    );
+    isSuccess = httpResult.success;
+    status = httpResult.status;
+    fieldErrorsFromApi = httpResult.fieldErrors;
+    apiMessage = httpResult.message;
+    apiData = httpResult.data;
+  } else {
+    const httpResult = await httpPost<CreateUpdateCompanyInputType, string>(
+      "/api/v1/companies",
+      inputData
+    );
+    isSuccess = httpResult.success;
+    status = httpResult.status;
+    fieldErrorsFromApi = httpResult.fieldErrors;
+    apiMessage = httpResult.message;
+    apiData = httpResult.data;
+  }
+
+  const fieldErrors: FieldErrors<CreateUpdateCompanyInputType> = {
+    id: [],
     name: [],
     isActive: [],
     legalName: [],
@@ -33,12 +58,11 @@ export const handler = async (
     currencyCode: [],
     timezone: [],
   };
-  if (httpResult.success) {
+  if (isSuccess) {
     revalidatePath("/business/companies");
   } else {
-    switch (httpResult.status) {
+    switch (status) {
       case ApiErrorCode.StatusCodeValidationFailed: {
-        const fieldErrorsFromApi = httpResult.fieldErrors;
         if (fieldErrorsFromApi) {
           Object.keys(fieldErrorsFromApi).forEach((key) => {
             const value = fieldErrorsFromApi[key];
@@ -109,12 +133,15 @@ export const handler = async (
     }
   }
   return {
-    success: httpResult.success,
-    data: httpResult.data,
-    status: httpResult.status,
-    message: httpResult.message,
+    success: isSuccess,
+    data: apiData,
+    status: status,
+    message: apiMessage,
     fieldErrors: fieldErrors,
   };
 };
 
-export const createCompany = createSafeAction(CreateCompanySchema, handler);
+export const createUpdateCompany = createSafeAction(
+  CreateUpdateCompanySchema,
+  handler
+);

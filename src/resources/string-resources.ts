@@ -68,11 +68,42 @@ declare module "*.json" {
     messageResetPasswordFailed: string;
   }
 
+  interface Company {
+    companies: string;
+    addNewCompany: string;
+    editCompany: string;
+    companyDetail: string;
+    name: string;
+    legalName: string;
+    registrationNumber: string;
+    taxId: string;
+    website: string;
+    email: string;
+    phone: string;
+    logoUrl: string;
+    address: string;
+    city: string;
+    state: string;
+    country: string;
+    postalCode: string;
+    currencyCode: string;
+    timezone: string;
+    active: string;
+    messageCreateCompanySuccess: string;
+    messageCreateCompanyFailed: string;
+    messageUpdateCompanySuccess: string;
+    messageUpdateCompanyFailed: string;
+    messageDeleteCompanyConfirm: string;
+    messageDeleteCompanySuccess: string;
+    messageDeleteCompanyFailed: string;
+  }
+
   interface StringResources {
     common: Common;
     business: Business;
     role: Role;
     user: User;
+    company: Company;
   }
 
   const value: StringResources;

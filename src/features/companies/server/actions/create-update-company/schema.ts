@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-export const CreateCompanySchema = z.object({
+export const CreateUpdateCompanySchema = z.object({
+  id: z.string().optional(),
   name: z.string().min(1, { message: "Company name is required" }).max(200, {
     message: "Company name must not be greater than 200 characters",
   }),

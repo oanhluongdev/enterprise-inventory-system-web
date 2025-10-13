@@ -16,8 +16,8 @@
     "copy": "Copy"
   },
   "business": {
-    "businessData": "Business Unit",
-    "business": "Business Unit",
+    "businessData": "Business Units",
+    "business": "Business Units",
     "userManagement": "User Management",
     "users": "Users",
     "roles": "Roles",
@@ -63,5 +63,34 @@
     "messageDeleteUserFailed": "The user has not been deleted.",
     "messageResetPasswordSuccess": "The password has been reset successfully.",
     "messageResetPasswordFailed": "The password has not been reset."
+  },
+  "company": {
+    "companies": "Companies",
+    "addNewCompany": "Add New Company",
+    "editCompany": "Edit Company",
+    "companyDetail": "Company Detail",
+    "name": "Company Name",
+    "legalName": "Legal Name",
+    "registrationNumber": "Registration Number",
+    "taxId": "Tax ID",
+    "website": "Website",
+    "email": "Email",
+    "phone": "Phone",
+    "logoUrl": "Logo URL",
+    "address": "Address",
+    "city": "City",
+    "state": "State",
+    "postalCode": "Postal Code",
+    "country": "Country",
+    "currencyCode": "Currency Code",
+    "timezone": "Timezone",
+    "active": "Active",
+    "messageCreateCompanySuccess": "A new company has been created successfully.",
+    "messageCreateCompanyFailed": "Unable to create a new company.",
+    "messageUpdateCompanySuccess": "The company has been updated successfully.",
+    "messageUpdateCompanyFailed": "Unable to update the company.",
+    "messageDeleteCompanyConfirm": "Are you sure you want to delete the company?",
+    "messageDeleteCompanySuccess": "The company has been deleted successfully.",
+    "messageDeleteCompanyFailed": "The company has not been deleted."
   }
 }

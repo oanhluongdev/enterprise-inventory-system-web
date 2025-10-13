@@ -68,7 +68,7 @@ export const AddUserForm = () => {
       if (fieldErrors) {
         Object.keys(fieldErrors).forEach((key) => {
           const prop = key as keyof typeof fieldErrors;
-          if (fieldErrors[prop].length > 0) {
+          if (fieldErrors[prop] && fieldErrors[prop].length > 0) {
             form.setError(prop, {
               type: "custom",
               message: fieldErrors[prop][0],
