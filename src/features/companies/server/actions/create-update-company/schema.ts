@@ -29,7 +29,7 @@ export const CreateUpdateCompanySchema = z.object({
     .max(200, { message: "Website must not be greater than 200 characters" })
     .optional(),
   email: z
-    .email({ message: "Invalid email" })
+    .string()
     .max(100, { message: "Email must not be greater than 100 characters" })
     .optional(),
   phone: z
@@ -68,5 +68,5 @@ export const CreateUpdateCompanySchema = z.object({
     .string()
     .max(50, { message: "Timezone must not be greater than 3 characters" })
     .optional(),
-  isActive: z.boolean().optional().default(true),
+  isActive: z.boolean().optional(),
 });
