@@ -65,6 +65,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
         } else if (action === FormActions.Edit) {
           DisplayToastSuccess(resouces.company.messageUpdateCompanySuccess);
         }
+        window.history.back();
       },
       onError(errorCode, inputData, message, fieldErrors) {
         let hasFieldError = false;
@@ -307,7 +308,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
@@ -326,7 +327,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
@@ -345,7 +346,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
@@ -364,7 +365,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
@@ -383,7 +384,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
@@ -402,7 +403,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
@@ -421,7 +422,7 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      readOnly={true}
+                      readOnly={action === FormActions.View || isSavingData}
                       className="rounded"
                     />
                   </FormControl>
