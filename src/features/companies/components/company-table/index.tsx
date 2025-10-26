@@ -4,7 +4,6 @@ import React, { use, useCallback, useMemo, useState } from "react";
 import { ApiResponse } from "@/lib/http-helper";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { DataTable } from "@/components/data-table";
-import { useUserModal } from "@/hooks/use-user-modal";
 import { FormActions } from "@/types/form-action";
 import { ConfirmMessage } from "@/components/confirm-message";
 import { ListCompanyItem } from "../../server/actions/list-companies/list-company-item";
@@ -16,6 +15,7 @@ import { useAction } from "@/hooks/use-action";
 import { deleteCompany } from "../../server/actions/delete-company";
 import { DisplayToastError, DisplayToastSuccess } from "@/lib/toast-helper";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 interface CompanyTableProps {
   listCompaniesResponse: Promise<ApiResponse<PaginatedResult<ListCompanyItem>>>;
@@ -25,7 +25,7 @@ export const CompanyTable = ({ listCompaniesResponse }: CompanyTableProps) => {
   const listCompaniesResponseResult = use(listCompaniesResponse);
   const [isOpenConfirm, setOpenConfirm] = useState(false);
   const [currentSelectedId, setCurrentSelectedId] = useState<string>();
-  const { onOpen: onOpenUserModal } = useUserModal();
+  const pathname = usePathname();
   const { data: session } = useSession();
   const companiesData = listCompaniesResponseResult.data?.items || [];
   const { execute: deleteActionExecute } = useAction(deleteCompany, {
@@ -44,14 +44,14 @@ export const CompanyTable = ({ listCompaniesResponse }: CompanyTableProps) => {
       switch (action) {
         case FormActions.View:
         case FormActions.Edit:
-          onOpenUserModal(id, action);
+          window.history.pushState(null, "", `${pathname}/${action}/${id}`);
           break;
         case FormActions.Delete:
           setOpenConfirm(true);
           break;
       }
     },
-    [onOpenUserModal]
+    [pathname]
   );
   const tableColumns = useMemo(
     () =>

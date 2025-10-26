@@ -23,16 +23,20 @@ import { CreateUpdateCompanySchema } from "../server/actions/create-update-compa
 import { createUpdateCompany } from "../server/actions/create-update-company";
 import { useAction } from "@/hooks/use-action";
 import { DisplayToastError, DisplayToastSuccess } from "@/lib/toast-helper";
+import { ApiResponse } from "@/lib/http-helper";
 
 interface CompanyPageProps {
   params: Promise<{ action: FormActions; id?: string }>;
-  company?: GetCompanyResponse;
+  getCompanyResponse?: Promise<ApiResponse<GetCompanyResponse>>;
 }
 
-export const CompanyPage = ({ params, company }: CompanyPageProps) => {
+export const CompanyPage = ({
+  params,
+  getCompanyResponse,
+}: CompanyPageProps) => {
   const paramsResult = use(params);
   const action = paramsResult.action;
-
+  const company = getCompanyResponse ? use(getCompanyResponse).data : undefined;
   const hookForm = useForm<CreateUpdateCompanyInputType>({
     resolver: zodResolver(CreateUpdateCompanySchema),
     defaultValues: {
@@ -94,6 +98,11 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
 
   const saveData = (data: CreateUpdateCompanyInputType) => {
     executeSaveData(data);
+  };
+
+  const onCancel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    window.history.back();
   };
 
   useEffect(() => {
@@ -463,7 +472,11 @@ export const CompanyPage = ({ params, company }: CompanyPageProps) => {
               {resouces.common.save}
             </Button>
           )}
-          <Button variant={"outline"} className="rounded min-w-[80px]">
+          <Button
+            variant={"outline"}
+            className="rounded min-w-[80px]"
+            onClick={(e) => onCancel(e)}
+          >
             {action !== FormActions.View
               ? resouces.common.cancel
               : resouces.common.close}

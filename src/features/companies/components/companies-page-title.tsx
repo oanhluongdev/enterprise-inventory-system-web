@@ -5,7 +5,6 @@ import { PlusIcon } from "lucide-react";
 import * as resources from "@/resources/string-resources.json";
 import { PageTitle } from "@/components/page-title";
 import { useSearch } from "@/hooks/use-search";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
@@ -20,17 +19,19 @@ export const CompaniesPageTitle = () => {
     [onSearch]
   );
 
+  const onAddNew = () => {
+    window.history.pushState(null, "", `${pathname}/add`);
+  };
+
   return (
     <PageTitle
       title={resources.company.companies}
       showSearch={true}
       onSearchChange={onSearchChange}
       rightActions={
-        <Link href={`${pathname}/add`}>
-          <Button size="sm" className="rounded-sm">
-            <PlusIcon size={4} /> {resources.common.addNew}
-          </Button>
-        </Link>
+        <Button size="sm" className="rounded-sm" onClick={onAddNew}>
+          <PlusIcon size={4} /> {resources.common.addNew}
+        </Button>
       }
     />
   );
